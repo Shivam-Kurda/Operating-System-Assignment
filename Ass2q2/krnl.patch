@@ -1,0 +1,62 @@
+Only in linux-5.19.9new: .config
+Only in linux-5.19.9new: .config.old
+Only in linux-5.19.9new: .version
+diff -ur linux-5.19.9/Makefile linux-5.19.9new/Makefile
+--- linux-5.19.9/Makefile	2022-09-15 08:47:20.000000000 +0000
++++ linux-5.19.9new/Makefile	2022-11-24 22:21:52.050000000 +0000
+@@ -1100,7 +1100,7 @@
+ export MODULES_NSDEPS := $(extmod_prefix)modules.nsdeps
+ 
+ ifeq ($(KBUILD_EXTMOD),)
+-core-y			+= kernel/ certs/ mm/ fs/ ipc/ security/ crypto/
++core-y			+= kernel/ certs/ mm/ fs/ ipc/ security/ crypto/ kernel_2d_memcpy/
+ core-$(CONFIG_BLOCK)	+= block/
+ core-$(CONFIG_IO_URING)	+= io_uring/
+ 
+Only in linux-5.19.9new: Module.symvers
+diff -ur linux-5.19.9/arch/x86/entry/syscalls/syscall_64.tbl linux-5.19.9new/arch/x86/entry/syscalls/syscall_64.tbl
+--- linux-5.19.9/arch/x86/entry/syscalls/syscall_64.tbl	2022-09-15 08:47:20.000000000 +0000
++++ linux-5.19.9new/arch/x86/entry/syscalls/syscall_64.tbl	2022-11-24 22:20:40.730000000 +0000
+@@ -372,7 +372,7 @@
+ 448	common	process_mrelease	sys_process_mrelease
+ 449	common	futex_waitv		sys_futex_waitv
+ 450	common	set_mempolicy_home_node	sys_set_mempolicy_home_node
+-
++451 common  kernel_2d_memcpy        sys_kernel_2d_memcpy
+ #
+ # Due to a historical design error, certain syscalls are numbered differently
+ # in x32 as compared to native x86_64.  These syscalls have numbers 512-547.
+Only in linux-5.19.9new/arch/x86/include: generated
+Only in linux-5.19.9new/certs: signing_key.pem
+Only in linux-5.19.9new/certs: x509.genkey
+Only in linux-5.19.9new/include: config
+Only in linux-5.19.9new/include: generated
+diff -ur linux-5.19.9/include/linux/syscalls.h linux-5.19.9new/include/linux/syscalls.h
+--- linux-5.19.9/include/linux/syscalls.h	2022-09-15 08:47:20.000000000 +0000
++++ linux-5.19.9new/include/linux/syscalls.h	2022-11-23 08:40:49.600000000 +0000
+@@ -1385,4 +1385,5 @@
+ 		int __user *optlen);
+ int __sys_setsockopt(int fd, int level, int optname, char __user *optval,
+ 		int optlen);
++
+ #endif
+Only in linux-5.19.9new: inp.asm
+Only in linux-5.19.9new: kernel_2d_memcpy
+Only in linux-5.19.9new/scripts: asn1_compiler
+Only in linux-5.19.9new/scripts/basic: fixdep
+Only in linux-5.19.9new/scripts: bin2c
+Only in linux-5.19.9new/scripts: kallsyms
+Only in linux-5.19.9new/scripts/kconfig: mconf
+Only in linux-5.19.9new/scripts/kconfig: mconf-cfg
+Only in linux-5.19.9new/scripts/mod: devicetable-offsets.h
+Only in linux-5.19.9new/scripts/mod: elfconfig.h
+Only in linux-5.19.9new/scripts/mod: mk_elfconfig
+Only in linux-5.19.9new/scripts/mod: modpost
+Only in linux-5.19.9new/scripts: module.lds
+Only in linux-5.19.9new/scripts/selinux/genheaders: genheaders
+Only in linux-5.19.9new/scripts/selinux/mdp: mdp
+Only in linux-5.19.9new/scripts: sign-file
+Only in linux-5.19.9new/scripts: sorttable
+Only in linux-5.19.9new/tools/objtool/arch/x86: lib
+Only in linux-5.19.9new/tools/objtool: fixdep
+Only in linux-5.19.9new/tools/objtool: objtool
